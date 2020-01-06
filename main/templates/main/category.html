@@ -2,13 +2,13 @@
 
 {% block content %}
 	<div class="row">
-		{% for blog, partone in part_ones.items %}
+		{% for blg, partone in part_ones.items %}
 		    <div class="col s12 m6 l4">
 				<a href="{{partone}}", style="color:#000">		    
 			      	<div class="card hoverable">
 			        	<div class="card-content">
-			        		<div class="card-title">{{blog.blog_series}}</div>
-				        	<p>{{ blog.series_summary}}</p>
+			        		<div class="card-title">{{blg.blog_series}}</div>
+				        	<p>{{ blg.series_summary}}</p>
 				        </div>
     				</div>
 		      	</a>

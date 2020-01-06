@@ -11,17 +11,21 @@ def single_slug(request, single_slug):
 	categories = [c.category_slug for c in BloggingCategory.objects.all()]
 	if single_slug in categories:
 		matching_series = BloggingSeries.objects.filter(blog_category__category_slug=single_slug)
-
 		series_urls = {}
+
 		for m in matching_series.all():
 			part_one = Blogging.objects.filter(blog_series__blog_series=m.blog_series).earliest("blog_published")
-			series_urls[m] = part_one
-		return render(request, "main/category.html", {"part_ones": series_urls})
+			series_urls[m] = part_one.blog_slug
+		return render(request, template_name="main/category.html", context={"part_ones": series_urls})
 
 
 	bloggings = [b.blog_slug for b in Blogging.objects.all()]
 
+
 	if single_slug in bloggings:
+		this_blog = Blogging.objects.get(blog_slug = single_slug)
+
+		return render(request=request, template_name="main/blog.html",context=	{"blog" : this_blog})
 		return HttpResponse(f"{single_slug} is a blog!!!")
 
 	return HttpResponse(f"{single_slug} does not correspond to anything.")
@@ -50,7 +54,7 @@ def register(request):
 
 				
 	form = NewUserForm
-	return render(request, "main/register.html", context = {"form": form})
+	return render(request, template_name="main/register.html", context = {"form": form})
 
 
 

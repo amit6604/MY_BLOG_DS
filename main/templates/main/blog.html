@@ -1,0 +1,14 @@
+{% extends "main/header.html"%}
+
+{% block content %}
+	<div class="row">
+	    <div class="col s12, m8, l8">
+		 	<h3>{{ blog.blog_title}}</h3>
+		 	<p style="font-size: 70%"> Published {{blog.blog_published}}</p>
+		 	{{blog.blog_content|safe}}   
+		</div>
+	</div>
+{% endblock%}
+
+
+
